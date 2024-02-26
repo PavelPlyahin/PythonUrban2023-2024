@@ -40,8 +40,8 @@ class Knight(Thread):
         print(f'{self.name} победил спустя {day_count} дней(дня)!')
 
 
-knight1 = Knight("Sir Lancelot", 25) # Низкий уровень умения
-knight2 = Knight("Sir Galahad", 40) # Высокий уровень умения
+knight1 = Knight("Sir Lancelot", 25)  # Низкий уровень умения
+knight2 = Knight("Sir Galahad", 40)  # Высокий уровень умения
 knight1.start()
 knight2.start()
 knight1.join()
