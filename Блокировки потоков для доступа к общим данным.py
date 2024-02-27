@@ -41,7 +41,7 @@ def deposit_thread(account, amount):
 
 
 def withdraw_thread(account, amount):
-    for _ in range(5):
+    for _ in range(11):
         account.cash_out(amount)
 
 
@@ -58,12 +58,18 @@ th_withdraw.join()
 
 
 # Deposited 100, new balance is 1100
-# Deposited 100, new balance is 1200
-# Deposited 100, new balance is 1300
-# Deposited 100, new balance is 1400
-# Deposited 100, new balance is 1500
-# Withdrew 150,  new balance is 1350
-# Withdrew 150,  new balance is 1200
-# Withdrew 150,  new balance is 1050
-# Withdrew 150,  new balance is 900
-# Withdrew 150,  new balance is 750
+# Withdrew 150, new balance is 950
+# Deposited 100, new balance is 1050
+# Withdrew 150, new balance is 900
+# Withdrew 150, new balance is 750
+# Withdrew 150, new balance is 600
+# Deposited 100, new balance is 700
+# Deposited 100, new balance is 800
+# Deposited 100, new balance is 900
+# Withdrew 150, new balance is 750
+# Withdrew 150, new balance is 600
+# Withdrew 150, new balance is 450
+# Withdrew 150, new balance is 300
+# Withdrew 150, new balance is 150
+# Withdrew 150, new balance is 0
+# Low balance, please bill recharge
