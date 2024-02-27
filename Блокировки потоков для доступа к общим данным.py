@@ -17,7 +17,7 @@ locker = threading.Lock()
 class BankAccount:
 
     def __init__(self):
-        self.balance = 100
+        self.balance = 1000
 
     def cash_in(self, amount):
         with locker:
@@ -36,22 +36,24 @@ class BankAccount:
 
 
 def deposit_thread(account, amount):
-    for _ in range(3):
+    for _ in range(5):
         account.cash_in(amount)
 
 
 def withdraw_thread(account, amount):
-    for _ in range(3):
+    for _ in range(5):
         account.cash_out(amount)
 
 
 account = BankAccount()
 
-th_deposit = threading.Thread(target=deposit_thread, args=(account, 20))
-th_withdraw = threading.Thread(target=withdraw_thread, args=(account, 80))
+th_deposit = threading.Thread(target=deposit_thread, args=(account, 100))
+th_withdraw = threading.Thread(target=withdraw_thread, args=(account, 150))
 
 th_deposit.start()
 th_withdraw.start()
 
 th_deposit.join()
 th_withdraw.join()
+
+
