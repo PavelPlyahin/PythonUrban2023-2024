@@ -29,7 +29,7 @@ class BankAccount:
         with locker:
             if self.balance >= amount:
                 self.balance -= amount
-                print(f'Withdrew {amount},  new balance is  {self.balance}')
+                print(f'Withdrew {amount}, new balance is {self.balance}')
                 sleep(0.5)
             else:
                 print(f'Low balance, please bill recharge ')
