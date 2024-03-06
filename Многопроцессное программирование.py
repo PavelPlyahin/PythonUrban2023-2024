@@ -1,34 +1,36 @@
-import multiprocessing as mp
+from multiprocessing import process
 from functools import partial
 from time import sleep
 
-class WarehouseManager():
-    manager = WarehouseManager
+
+class WarehouseManager:
     def __init__(self):
-        self.data = {key: 0 for key in ['product1', 'product2', 'product3']}
+        self.data = {}
 
+    def process_request(self, request):
+        product, action = request
 
-    def add_to_data(self, data, product, quantity):
-        if product not in data:
-            data[product] = quantity
-        else:
-            data[product] += quantity
+        if action == 'receipt':
+            if product in self.data:
+                self.data[product] += 1
+            else:
+                self.data[product] = 1
+        elif action == 'shipment':
+            if product in self.data and self.data[product] > 0:
+                self.data[product] -= 1
 
-    def remove_from_data(self, data, product, quantity):
-        new_quantity = data.get(product, 0) - quantity
-        if new_quantity < 0:
-            raise ValueError("Negative quantity not allowed.")
-        if new_quantity > 0:
-            data[product] = new_quantity
-        elif product in data:
-            del data[product]
+    def run(self, requests):
+        if __name__ == "__main__":
+            processes = []
+            manager.run(requests)
+        for request in requests:
+            process = Process(target=self.process_request, args=(request,))
+            processes.append(process)
+            process.start()
 
-    def process_receipt(self, product, quantity):
-        self.add_to_data(self.data, product, quantity)
-        return f"Received {quantity} units of {product}"
+        for process in processes:
+            process.join()
 
-    def process_shipment(self, product, quantity):
-        self.remove_from_data(self.product, quantity)
 
 requests = [
     ("product1", "receipt", 100),
@@ -37,9 +39,5 @@ requests = [
     ("product3", "receipt", 200),
     ("product2", "shipment", 50)
 ]
-
-# Запускаем обработку запросов
-manager.run(requests)
-
-# Выводим обновленные данные о складских запасах
+manager = WarehouseManager()
 print(manager.data)
