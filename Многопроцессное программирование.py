@@ -1,43 +1,40 @@
-from multiprocessing import process
-from functools import partial
-from time import sleep
+import multiprocessing
 
 
 class WarehouseManager:
     def __init__(self):
-        self.data = {}
+        self.data = multiprocessing.Manager().dict()
 
     def process_request(self, request):
-        product, action = request
-
-        if action == 'receipt':
-            if product in self.data:
-                self.data[product] += 1
-            else:
-                self.data[product] = 1
-        elif action == 'shipment':
-            if product in self.data and self.data[product] > 0:
-                self.data[product] -= 1
+        product, action, quantity = request
+        if product in self.data:
+            if action == 'receipt':
+                self.data[product] += quantity
+            elif action == 'shipment':
+                if quantity < self.data[product]:
+                    print('нет требуемого количества на складе')
+                self.data[product] -= quantity
+        else:
+            self.data[product] = quantity
 
     def run(self, requests):
-        if __name__ == "__main__":
-            processes = []
-            manager.run(requests)
+        processes = []
         for request in requests:
-            process = Process(target=self.process_request, args=(request,))
-            processes.append(process)
-            process.start()
+            process.append(multiprocessing.Process(target=self.process_request, args=(request,)))
+        for i in processes:
+            i.start()
+        for i in processes:
+            i.join()
 
-        for process in processes:
-            process.join()
 
+if __name__ == '__main__':
+    manager = WarehouseManager()
 
-requests = [
-    ("product1", "receipt", 100),
-    ("product2", "receipt", 150),
-    ("product1", "shipment", 30),
-    ("product3", "receipt", 200),
-    ("product2", "shipment", 50)
-]
-manager = WarehouseManager()
-print(manager.data)
+    requests = [
+        ("product1", "receipt", 100),
+        ("product2", "receipt", 150),
+        ("product1", "shipment", 30),
+        ("product3", "receipt", 200),
+        ("product2", "shipment", 50)
+    ]
+    print(manager.data)
