@@ -12,8 +12,7 @@ class WarehouseManager:
                 self.data[product] += quantity
             elif action == "shipment":
                 if quantity < self.data[product]:
-                    print('нет требуемого количества на складе')
-                self.data[product] -= quantity
+                    self.data[product] -= quantity
         else:
             self.data[product] = quantity
 
