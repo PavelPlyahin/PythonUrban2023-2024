@@ -45,9 +45,9 @@ class Cafe:
 
     def customer_arrival(self):
 
-        for custumer_num in range(1, 21):
-            print(f'посетитель номер {custumer_num} прибыл')
-            self.serve_customer(custumer_num)
+        for customer_num in range(1, 21):
+            print(f'посетитель номер {customer_num} прибыл')
+            self.serve_customer(customer_num)
             sleep(1)
 
     def serve_customer(self, customer_num):
@@ -55,9 +55,9 @@ class Cafe:
         flag = False
         for table in self.tables:
             if not table.is_busy:
-                some_costumer = Customer(customer_num, self, table)
+                some_customer = Customer(customer_num, self, table)
                 table.is_busy = True
-                some_costumer.start()
+                some_customer.start()
                 flag = True
                 break
         if not flag:
