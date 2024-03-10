@@ -48,7 +48,7 @@ class Cafe:
         for customer_num in range(1, 21):
             print(f'посетитель номер {customer_num} прибыл')
             self.serve_customer(customer_num)
-            sleep(1)
+            sleep(2)
 
     def serve_customer(self, customer_num):
 
