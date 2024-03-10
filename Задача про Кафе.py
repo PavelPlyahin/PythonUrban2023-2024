@@ -45,7 +45,7 @@ class Cafe:
 
     def customer_arrival(self):
 
-        for custumer_num in range(1, 5):
+        for custumer_num in range(1, 21):
             print(f'посетитель номер {custumer_num} прибыл')
             self.serve_customer(custumer_num)
             sleep(1)
@@ -83,26 +83,17 @@ class Customer(Thread):
             self.cafe.serve_customer(self.cafe.queue.get())
 
 
-tables: object = (Table(i) for i in range(1, 4))
+table1 = Table(1)
+table2 = Table(2)
+table3 = Table(3)
+
+tables = [table1, table2, table3]
 queue = queue.Queue()
 queue.qsize()
 cafe = Cafe(queue, tables)
 
-customer_arrival_thread = Thread(target=cafe.customer_arrival)
+customer_arrival_thread = threading.Thread(target=cafe.customer_arrival)
 customer_arrival_thread.start()
 customer_arrival_thread.join()
 
-# посетитель номер 1 прибыл
-# посетитель номер 1 сед за стол 1. (Начало обслуживания)
-# посетитель номер 2 прибыл
-# посетитель номер 2 сед за стол 2. (Начало обслуживания)
-# посетитель номер 3 прибыл
-# посетитель номер 3 сед за стол 3. (Начало обслуживания)
-# посетитель номер 4 прибыл
-# посетитель  4 ожидает свободный стол
-# Посетитель номер 1  покушал и ушел. (Конец обслуживания)
-# посетитель  4 ожидает свободный стол
-# Посетитель номер 2  покушал и ушел. (Конец обслуживания)
-# посетитель  4 ожидает свободный стол
-# Посетитель номер 3  покушал и ушел. (Конец обслуживания)
-# посетитель  4 ожидает свободный стол
+
