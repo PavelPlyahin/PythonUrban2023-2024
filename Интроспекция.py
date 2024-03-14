@@ -40,5 +40,5 @@ def introspection_info(obj):
     return info
 
 
-number_info = introspection_info('Привет буфет 1984 ')
+number_info = introspection_info(88)
 print(number_info)
