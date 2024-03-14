@@ -6,6 +6,7 @@
 #    - Методы объекта.
 #    - Модуль, к которому объект принадлежит.
 #    - Другие интересные свойства объекта, учитывая его тип (по желанию).
+from pprint import pprint
 class IntrospectionHelper:
     def __init__(self, obj):
         self.obj = obj
@@ -41,4 +42,4 @@ def introspection_info(obj):
 
 
 number_info = introspection_info(88)
-print(number_info)
+pprint(number_info)
