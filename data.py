@@ -1,5 +1,14 @@
-import datetime
+"""Задание:
 
+Создайте класс SuperDate, наследованный от класса datetime модуля datetime,
+объекты которого будут дополнительно обладать следующими методами:
+
+1. get_season - должен возвращать сезон года (Summer, Autumn, Winter, Spring)
+2. get_time_of_day - должен возвращать  время суток
+(Morning: 6-12; Day: 12-18, Evening: 18-0, Night: 0-6) (последнее число не включено в промежуток)
+import datetime. """
+
+import datetime
 
 class SuperDate(datetime.datetime):
 
